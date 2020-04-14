@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex, { createNamespacedHelpers } from 'vuex'
-import Axios from 'axios'
+import axios from 'axios'
 
 Vue.use(Vuex)
 
