@@ -3,6 +3,7 @@
     <!-- i will build a bunch of car components for each car -->
     <div class="row">
       <create-car></create-car>
+      <div class="col-3"></div>
       <car v-for="car in cars" :carData="car"></car>
       <!-- car deetz go here -->
     </div>
@@ -10,24 +11,24 @@
 </template>
 
 <script>
-import Car from './Car.vue'
-import CreateCar from './CreateCar.vue'
+  import Car from './Car.vue'
+  import CreateCar from './CreateCar.vue'
   export default {
     name: 'cars',
-    data(){
-      return{
+    data() {
+      return {
 
       }
     },
     computed: {
-      cars(){
+      cars() {
         return this.$store.state.cars.sort((a, b) => a.make.charCodeAt(0) - b.make.charCodeAt(0))
       }
     },
-    created(){
+    created() {
       this.$store.dispatch("getCars")
     },
-    methods{},
+    methods: {},
     components: {
       Car,
       CreateCar
@@ -35,8 +36,8 @@ import CreateCar from './CreateCar.vue'
   }
 </script>
 
-<style lang="scss" scoped>
-.cars {
-  outline: 1px solid black;
-}
+<style scoped>
+  .cars {
+    outline: 1px solid black;
+  }
 </style>

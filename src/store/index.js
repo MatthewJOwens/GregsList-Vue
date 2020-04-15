@@ -11,15 +11,19 @@ let _api = axios.create({
 
 export default new Vuex.Store({
   state: {
-    cars: []
+    cars: [],
+    houses: [],
   },
   mutations: {
     setCars(state, cars) {
       state.cars = cars
-    }
+    },
+    setHouses(state, houses) {
+      state.houses = houses
+    },
   },
   actions: {
-    async getMatchedCSSRules({ commit, dispatch }) {
+    async getCars({ commit, dispatch }) {
       try {
         let res = await _api.get('cars')
         console.log(res.data.data);
@@ -44,8 +48,30 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
-    getHouses({ commit, dispatch }) {
-
+    async getHouses({ commit, dispatch }) {
+      try {
+        let res = await _api.get('houses')
+        console.log(res.data.data);
+        commit('setHouses', res.data.data)
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async deleteHouse({ commit, dispatch }, houseId) {
+      try {
+        await _api.delete('houses/' + houseId)
+        dispatch('getHouses')
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async createHouse({ commit, dispatch }, newHouse) {
+      try {
+        let res = await _api.post('houses', newHouse)
+        dispatch('getHouses')
+      } catch (error) {
+        console.error(error)
+      }
     }
   },
   modules: {

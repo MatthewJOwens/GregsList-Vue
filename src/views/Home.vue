@@ -5,6 +5,9 @@
       <Cars></Cars>
     </div>
     <!-- houses -->
+    <div class="row">
+      <Houses />
+    </div>
     <!-- jerbs -->
     <!-- <div class="row">
       <Jobs></Jobs>
@@ -13,10 +16,11 @@
 </template>
 
 <script>
-import Cars from "../components/Cars.vue";
+  import Cars from "../components/Cars.vue";
+  import Houses from "../components/Houses.vue";
 
-export default {
-  name: "Home",
-  components: { Cars }
-};
+  export default {
+    name: "Home",
+    components: { Cars, Houses }
+  };
 </script>
