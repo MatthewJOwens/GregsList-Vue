@@ -1,26 +1,14 @@
 <template>
   <div class="home container-fluid">
-    <!-- cars -->
     <div class="row">
-      <Cars></Cars>
+      <div class="col-12">Welcome to Greg's List</div>
     </div>
-    <!-- houses -->
-    <div class="row">
-      <Houses />
-    </div>
-    <!-- jerbs -->
-    <!-- <div class="row">
-      <Jobs></Jobs>
-    </div>-->
   </div>
 </template>
 
 <script>
-  import Cars from "../components/Cars.vue";
-  import Houses from "../components/Houses.vue";
-
-  export default {
-    name: "Home",
-    components: { Cars, Houses }
-  };
+export default {
+  name: "Home",
+  components: {}
+};
 </script>

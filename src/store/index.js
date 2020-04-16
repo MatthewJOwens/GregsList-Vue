@@ -12,15 +12,23 @@ let _api = axios.create({
 export default new Vuex.Store({
   state: {
     cars: [],
+    activeCar: {},
     houses: [],
+    activeHouse: {},
   },
   mutations: {
     setCars(state, cars) {
       state.cars = cars
     },
+    setActiveCar(state, car) {
+      state.activeCar = car
+    },
     setHouses(state, houses) {
       state.houses = houses
     },
+    setActiveHouse(state, house) {
+      state.activeHouse = house
+    }
   },
   actions: {
     async getCars({ commit, dispatch }) {
@@ -28,6 +36,15 @@ export default new Vuex.Store({
         let res = await _api.get('cars')
         console.log(res.data.data);
         commit('setCars', res.data.data)
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getSingleCar({ commit, dispatch }, carId) {
+      try {
+        let res = await _api.get('cars/' + carId)
+        console.log(res.data.data);
+        commit('setActiveCar', res.data.data)
       } catch (error) {
         console.error(error);
       }
@@ -53,6 +70,15 @@ export default new Vuex.Store({
         let res = await _api.get('houses')
         console.log(res.data.data);
         commit('setHouses', res.data.data)
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getSingleHouse({ commit, dispatch }, houseId) {
+      try {
+        let res = await _api.get('houses/' + houseId)
+        console.log(res.data.data);
+        commit('setActiveHouse', res.data.data)
       } catch (error) {
         console.error(error);
       }

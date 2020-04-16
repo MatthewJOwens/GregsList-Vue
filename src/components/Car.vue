@@ -1,11 +1,8 @@
 <template>
-  <div class="car border col-3">
+  <div class="car border col-3" @click="carDetails()">
     <img :src="carData.imgUrl" alt class="img-fluid" />
-    <h5>{{carData.make}}</h5>
-    <h5>{{carData.model}}</h5>
+    <h5>{{carData.year}} {{carData.make}} {{carData.model}}</h5>
     <p>${{carData.price}}</p>
-    <p>Year: {{carData.year}}</p>
-    <button class="btn btn-danger mb-1" @click="deleteCar()">Delete</button>
   </div>
 </template>
 
@@ -17,8 +14,12 @@ export default {
     return {};
   },
   methods: {
-    deleteCar() {
-      this.$store.dispatch("deleteCar", this.carData._id);
+    carDetails(id) {
+      this.$store.commit("setActiveCar", {});
+      this.$router.push({
+        name: "CarDetails",
+        params: { carId: this.carData._id }
+      });
     }
   }
 };
